@@ -11,16 +11,16 @@ export default defineConfig({
     tailwindcss()
   ],
 
-  // Aenas para desenvolvimento
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://localhost:3000",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
-  },
+  // Apenas para desenvolvimento
+//  server: {
+//    proxy: {
+//      "/api": {
+//        target: "http://localhost:3000",
+//        changeOrigin: true,
+//        rewrite: (path) => path.replace(/^\/api/, '')
+//      }
+//    }
+//  },
   // Shadcn - UI
   resolve: {
     alias: {
