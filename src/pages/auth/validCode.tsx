@@ -8,7 +8,7 @@ import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
 import useAuth from "@/context/useAuth"
 export default function VerifyCode() {
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm<{ code: number }>({ mode: "onChange" })
+    const { register, handleSubmit, formState: { errors, isValid, isSubmitting } } = useForm<{ code: number }>({ mode: "onChange" })
     const navigate = useNavigate()
     const { user } = useAuth()
     async function verifyCode(data: { code: number }) {
@@ -55,11 +55,10 @@ export default function VerifyCode() {
 
                     {errors.code?.type === 'minLength' || errors.code?.type === 'maxLength' && <p className="text-sm text-red-500">O código deve ter 6 dígitos</p>}
                 </div>
-
                 <Button
-                    disabled={!isValid}
+                    disabled={!isValid || isSubmitting}
                     className="w-full bg-white text-black font-semibold py-3 rounded-xl hover:scale-[1.02] active:scale-[0.98] transition disabled:bg-gray-800">
-                    Verificar Código
+                    {isSubmitting ? 'Vericando...' : 'Verificar Código'}
                 </Button>
 
                 <p className="text-center text-xs text-white/40">

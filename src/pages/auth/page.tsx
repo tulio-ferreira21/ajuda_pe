@@ -10,7 +10,7 @@ import useAuth from "@/context/useAuth"
 
 export default function Auth() {
     const { login } = useAuth()
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm<{ phone: number }>({ mode: "onChange" })
+    const { register, handleSubmit, formState: { errors, isValid, isSubmitting } } = useForm<{ phone: number }>({ mode: "onChange" })
     const navigate = useNavigate()
     async function onSubmit(data: { phone: number }) {
         try {
@@ -66,9 +66,9 @@ export default function Auth() {
                     </Link>
                 </div>
                 <Button
-                    disabled={!isValid}
+                    disabled={!isValid || isSubmitting}
                     className="w-full bg-white text-black font-semibold py-3 rounded-xl hover:scale-[1.02] active:scale-[0.98] transition disabled:bg-gray-800">
-                    Continuar
+                    {isSubmitting ? 'Enviando...' : 'Continuar'}
                 </Button>
 
                 <p className="text-center text-xs text-white/40">

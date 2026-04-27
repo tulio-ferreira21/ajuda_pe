@@ -123,7 +123,6 @@ export function ModalConfirmDelete({ handleDelete, id }: { handleDelete: (id: st
                         e.preventDefault()
                         e.stopPropagation()
                         handleDelete(id)
-                        window.location.href="/dashboard"
                     }}>
                         <Trash />
                         Continuar

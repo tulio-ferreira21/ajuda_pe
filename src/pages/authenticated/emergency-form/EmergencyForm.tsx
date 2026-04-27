@@ -9,7 +9,7 @@ import { Textarea } from "../../../components/ui/textarea";
 import { Link, useNavigate } from "react-router-dom";
 export default function EmergencyForm() {
     //control é para elementos shadcn
-    const { register, handleSubmit } = useForm<Help_Requests>({ mode: "onChange" })
+    const { register, handleSubmit, formState: { isSubmitting } } = useForm<Help_Requests>({ mode: "onChange" })
     const navigate = useNavigate()
     function getLocation(): Promise<GeolocationPosition> {
         return new Promise((resolve, reject) => {
@@ -79,8 +79,9 @@ export default function EmergencyForm() {
                     </select>
                 </div>
                 <Button
+                    disabled={isSubmitting}
                     className="w-full bg-white text-black font-semibold py-3 rounded-xl hover:scale-[1.02] active:scale-[0.98] transition disabled:bg-gray-800">
-                    Continuar
+                    {isSubmitting ? 'Enviando pedido de ajuda' : 'Continuar'}
                 </Button>
                 <Link className="text-sm text-center hover:underline" to={'/dashboard'}>
                     Voltar ao Dashboard
