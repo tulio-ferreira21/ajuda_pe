@@ -205,11 +205,12 @@ export default function Profile() {
                                 </div>
 
                                 <button
+                                    disabled={isSubmitting}
                                     onClick={handleSaveProfile}
-                                    className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-white text-black px-4 py-3 font-medium hover:bg-gray-200 transition"
+                                    className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-white text-black px-4 py-3 font-medium hover:bg-gray-200 transition disabled:bg-gray-400 disabled:hover:bg-gray-400"
                                 >
                                     <Save size={16} />
-                                    Salvar alterações
+                                    {isSubmitting ? 'Salvando' : 'Salvar as Alterações'}
                                 </button>
                             </div>
                         ) : (
