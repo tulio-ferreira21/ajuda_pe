@@ -3,7 +3,7 @@ import { api } from "../services/api/api";
 import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 export function ProtectedRoute({ children }: { children: React.ReactNode }) {
-    const [isAuth, setIsAuth] = useState<boolean>(false)
+    const [isAuth, setIsAuth] = useState<boolean | null>(null)
     useEffect(() => {
         api.get('/users/me', { withCredentials: true })
             .then(() => setIsAuth(true))
