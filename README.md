@@ -1,75 +1,109 @@
-# React + TypeScript + Vite
+# Ajuda PE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 1. Visão Geral
 
-Currently, two official plugins are available:
+Ajuda PE é uma plataforma desenvolvida para apoio em situações de enchentes no Brasil. O sistema tem como objetivo central fornecer acesso rápido, confiável e organizado a informações sobre abrigos e solicitações de socorro.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+A aplicação foi concebida para operar em cenários críticos, onde a disponibilidade de informação e a agilidade na comunicação impactam diretamente a segurança das pessoas afetadas.
 
-## React Compiler
+---
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## 2. Problema
 
-Note: This will impact Vite dev & build performances.
+Durante enchentes, é comum a ausência de uma fonte centralizada de informações sobre:
 
-## Expanding the ESLint configuration
+* Localização de abrigos
+* Capacidade disponível
+* Necessidades emergenciais
+* Comunicação de pedidos de ajuda
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Essa falta de organização dificulta a tomada de decisão tanto por vítimas quanto por equipes de apoio.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 3. Solução Proposta
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+O Ajuda PE centraliza essas informações em uma única plataforma, permitindo:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+* Consulta de abrigos próximos com base na localização do usuário
+* Visualização do status dos abrigos em tempo real
+* Registro de pedidos de socorro
+* Identificação de necessidades específicas de cada abrigo
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 4. Funcionalidades
+
+### 4.1 Consulta de Abrigos
+
+* Listagem baseada em geolocalização
+* Informações detalhadas por abrigo
+
+### 4.2 Status dos Abrigos
+
+* Lotação (cheio ou disponível)
+* Tipo de abrigo
+* Necessidades atuais
+
+### 4.3 Pedido de Socorro
+
+* Registro de solicitações
+* Canal direto para comunicação emergencial
+
+---
+
+## 5. Arquitetura
+
+A aplicação segue uma arquitetura cliente-servidor dividida em três camadas principais:
+
+### 5.1 Frontend
+
+Responsável pela interface com o usuário e consumo da API.
+
+### 5.2 Backend
+
+Responsável pelas regras de negócio, autenticação e processamento de dados.
+
+### 5.3 Banco de Dados
+
+Responsável pela persistência das informações de abrigos, usuários e solicitações.
+
+---
+
+## 6. Tecnologias Utilizadas
+
+### Frontend
+
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge\&logo=react\&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge\&logo=typescript\&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge\&logo=tailwind-css\&logoColor=white)
+
+#### Bibliotecas
+
+* shadcn/ui
+* react-hook-form
+* leaflet
+* lucide-icons
+
+### Backend
+
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge\&logo=express\&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge\&logo=postgresql\&logoColor=white)
+
+### Infraestrutura
+
+![Render](https://img.shields.io/badge/Render-430098?style=for-the-badge\&logo=render\&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge\&logo=vercel\&logoColor=white)
+
+---
+
+## 7. Deploy
+
+* Backend hospedado na plataforma Render
+* Frontend hospedado na Vercel
+
+---
+
+## 8. Considerações
+
+O Ajuda PE foi projetado com foco em simplicidade, desempenho e usabilidade em ambientes adversos. A escolha das tecnologias e da arquitetura visa garantir rapidez no acesso às informações e facilidade de manutenção do sistema.
