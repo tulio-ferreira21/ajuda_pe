@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Main from '../pages/landing/page'
 import Auth from '../pages/auth/page'
 import VerifyCode from '../pages/auth/validCode'

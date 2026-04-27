@@ -29,11 +29,17 @@ export default function PageRequest() {
     async function cancelledStatus() {
         try {
             const response = await api.patch(`/help-request/${id}`, { status: 'cancelled' })
-            setRequest((prev) => ({ ...prev, status: response.data.status }))
+            setRequest((prev) => {
+                // Aqui vai dar erro porquê como deifni que request receberia HelpRequest ou null, apenas ...prev pode quebrar, caso seja null
+                // Então faça uma checagem no valor de prev para ver se ela é null ou não
+                if(!prev) return prev
+                return {
+                    ...prev, status: response.data.status
+                }
+            })
             toast.success('Status Atualizado com sucesso')
         } catch (error) {
             toast.error('Erro ao atualizar')
-            console.log(error)
         }
     }
     useEffect(() => {

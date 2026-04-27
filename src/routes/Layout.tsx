@@ -1,4 +1,4 @@
-import { ExternalLink, Globe, Info, Mail, Phone, ShieldCheck } from "lucide-react";
+import { ExternalLink, Globe, Info, Mail } from "lucide-react";
 import { Outlet } from "react-router-dom";
 
 export default function Layout() {

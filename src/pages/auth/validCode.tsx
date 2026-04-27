@@ -4,14 +4,13 @@ import { Label } from "../../components/ui/label"
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { api } from "../../services/api/api"
-import { useContext } from "react"
-import { AuthContext } from "../../context/AuthContext"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
+import useAuth from "@/context/useAuth"
 export default function VerifyCode() {
     const { register, handleSubmit, formState: { errors, isValid } } = useForm<{ code: number }>({ mode: "onChange" })
-    const { user } = useContext(AuthContext)
     const navigate = useNavigate()
+    const { user } = useAuth()
     async function verifyCode(data: { code: number }) {
         try {
             const result: { message: string } = await api.post('/auth/verify-code', { phone: user, code: data.code })

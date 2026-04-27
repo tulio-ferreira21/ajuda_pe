@@ -1,102 +1,7 @@
 import { MapPin, Users } from "lucide-react";
 import { motion } from 'framer-motion'
-const sheltersMock = [
-    {
-        id: 1,
-        name: "Escola Municipal X",
-        lat: -8.0577,
-        lng: -34.8829,
-        distance: "1.2 km",
-        spots: 20,
-        needs: [
-            { item: "Água", priority: "HIGH" },
-            { item: "Comida", priority: "MEDIUM" }
-        ],
-        updated: "10 min atrás"
-    },
-    {
-        id: 2,
-        name: "Ginásio Central",
-        lat: -8.0631,
-        lng: -34.8711,
-        distance: "2.5 km",
-        spots: 0,
-        needs: [{ item: "Cobertores", priority: "HIGH" }],
-        updated: "5 min atrás"
-    },
-    {
-        id: 1,
-        name: "Escola Municipal X",
-        lat: -8.0577,
-        lng: -34.8829,
-        distance: "1.2 km",
-        spots: 20,
-        needs: [
-            { item: "Água", priority: "HIGH" },
-            { item: "Comida", priority: "MEDIUM" }
-        ],
-        updated: "10 min atrás"
-    },
-    {
-        id: 2,
-        name: "Ginásio Central",
-        lat: -8.0631,
-        lng: -34.8711,
-        distance: "2.5 km",
-        spots: 0,
-        needs: [{ item: "Cobertores", priority: "HIGH" }],
-        updated: "5 min atrás"
-    },
-    {
-        id: 1,
-        name: "Escola Municipal X",
-        lat: -8.0577,
-        lng: -34.8829,
-        distance: "1.2 km",
-        spots: 20,
-        needs: [
-            { item: "Água", priority: "HIGH" },
-            { item: "Comida", priority: "MEDIUM" }
-        ],
-        updated: "10 min atrás"
-    },
-    {
-        id: 2,
-        name: "Ginásio Central",
-        lat: -8.0631,
-        lng: -34.8711,
-        distance: "2.5 km",
-        spots: 0,
-        needs: [{ item: "Cobertores", priority: "HIGH" }],
-        updated: "5 min atrás"
-    },
-    {
-        id: 1,
-        name: "Escola Municipal X",
-        lat: -8.0577,
-        lng: -34.8829,
-        distance: "1.2 km",
-        spots: 20,
-        needs: [
-            { item: "Água", priority: "HIGH" },
-            { item: "Comida", priority: "MEDIUM" }
-        ],
-        updated: "10 min atrás"
-    },
-    {
-        id: 2,
-        name: "Ginásio Central",
-        lat: -8.0631,
-        lng: -34.8711,
-        distance: "2.5 km",
-        spots: 0,
-        needs: [{ item: "Cobertores", priority: "HIGH" }],
-        updated: "5 min atrás"
-    },
-
-];
-
-export function Shelters({ centerOnShelter }) {
+import { sheltersMock } from "@/assets/data/shelters.mock";
+export function Shelters({ centerOnShelter }: { centerOnShelter: (lat: number, lng: number) => void }) {
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -106,7 +11,7 @@ export function Shelters({ centerOnShelter }) {
             <h3 className="w-full p-4 text-2xl font-bold border-b border-white">Abrigos Próximos</h3>
             <div className="relative overflow-y-auto h-[60vh] p-4 bg-black/80 custom-scrollbar">
                 <div className="grid gap-6">
-                    {sheltersMock.map((shelter,index) => (
+                    {sheltersMock.map((shelter, index) => (
                         <motion.div
                             initial={{ y: 50, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}

@@ -1,115 +1,23 @@
 import { useEffect, useState, useRef } from "react";
 import { MapPin, User2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from 'framer-motion'
 import { Shelters } from "../../../components/Shelters";
 import { ModalEmergency } from "../../../components/Modal";
 import { type User } from "../../../assets/types/user.types";
 import { api } from "../../../services/api/api";
 import HelpRequests from "../../../components/help_requests";
-const sheltersMock = [
-    {
-        id: 1,
-        name: "Escola Municipal X",
-        lat: -8.0577,
-        lng: -34.8829,
-        distance: "1.2 km",
-        spots: 20,
-        needs: [
-            { item: "Água", priority: "HIGH" },
-            { item: "Comida", priority: "MEDIUM" }
-        ],
-        updated: "10 min atrás"
-    },
-    {
-        id: 2,
-        name: "Ginásio Central",
-        lat: -8.0631,
-        lng: -34.8711,
-        distance: "2.5 km",
-        spots: 0,
-        needs: [{ item: "Cobertores", priority: "HIGH" }],
-        updated: "5 min atrás"
-    },
-    {
-        id: 1,
-        name: "Escola Municipal X",
-        lat: -8.0577,
-        lng: -34.8829,
-        distance: "1.2 km",
-        spots: 20,
-        needs: [
-            { item: "Água", priority: "HIGH" },
-            { item: "Comida", priority: "MEDIUM" }
-        ],
-        updated: "10 min atrás"
-    },
-    {
-        id: 2,
-        name: "Ginásio Central",
-        lat: -8.0631,
-        lng: -34.8711,
-        distance: "2.5 km",
-        spots: 0,
-        needs: [{ item: "Cobertores", priority: "HIGH" }],
-        updated: "5 min atrás"
-    },
-    {
-        id: 1,
-        name: "Escola Municipal X",
-        lat: -8.0577,
-        lng: -34.8829,
-        distance: "1.2 km",
-        spots: 20,
-        needs: [
-            { item: "Água", priority: "HIGH" },
-            { item: "Comida", priority: "MEDIUM" }
-        ],
-        updated: "10 min atrás"
-    },
-    {
-        id: 2,
-        name: "Ginásio Central",
-        lat: -8.0631,
-        lng: -34.8711,
-        distance: "2.5 km",
-        spots: 0,
-        needs: [{ item: "Cobertores", priority: "HIGH" }],
-        updated: "5 min atrás"
-    },
-    {
-        id: 1,
-        name: "Escola Municipal X",
-        lat: -8.0577,
-        lng: -34.8829,
-        distance: "1.2 km",
-        spots: 20,
-        needs: [
-            { item: "Água", priority: "HIGH" },
-            { item: "Comida", priority: "MEDIUM" }
-        ],
-        updated: "10 min atrás"
-    },
-    {
-        id: 2,
-        name: "Ginásio Central",
-        lat: -8.0631,
-        lng: -34.8711,
-        distance: "2.5 km",
-        spots: 0,
-        needs: [{ item: "Cobertores", priority: "HIGH" }],
-        updated: "5 min atrás"
-    },
-
-];
-
+import type { Location } from "@/assets/types/location.types";
+import { sheltersMock } from "@/assets/data/shelters.mock";
+import type { Map, LayerGroup, Marker } from "leaflet";
+import { toast } from "react-toastify";
 export default function App() {
-    const [location, setLocation] = useState(null);
-    const mapRef = useRef(null);
-    const leafletMap = useRef(null);
-    const markersLayer = useRef(null);
-    const userMarkerRef = useRef(null);
-
+    const [location, setLocation] = useState<Location | null>(null);
+    const mapRef = useRef<HTMLDivElement | null>(null);
+    const leafletMap = useRef<Map | null>(null);
+    const markersLayer = useRef<LayerGroup | null>(null);
+    const userMarkerRef = useRef<Marker | null>(null);
+    const navigate = useNavigate()
     const [user, setUser] = useState<User>()
     useEffect(() => {
         async function getUser() {
@@ -117,8 +25,8 @@ export default function App() {
                 const response = await api.get('/users/me', { withCredentials: true })
                 setUser(response.data.user)
             } catch (error) {
-                console.log(error)
-                console.log(error.message)
+                toast.error('Erro na requisição')
+                navigate('/')
             }
         }
         getUser()
@@ -138,12 +46,16 @@ export default function App() {
         script.onload = () => {
             if (!leafletMap.current && mapRef.current) {
                 const L = window.L;
-                leafletMap.current = L.map(mapRef.current).setView([-8.0476, -34.8770], 13);
+                leafletMap.current = L.map(mapRef.current).setView(
+                    [-8.0476, -34.8770],
+                    13
+                );
 
                 L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-                    subdomains: 'abcd',
-                    maxZoom: 20
+                    attribution:
+                        '&copy; OpenStreetMap contributors &copy; CARTO',
+                    subdomains: "abcd",
+                    maxZoom: 20,
                 }).addTo(leafletMap.current);
 
                 markersLayer.current = L.layerGroup().addTo(leafletMap.current);
@@ -160,10 +72,15 @@ export default function App() {
     }, []);
     const renderMarkers = () => {
         if (!window.L || !markersLayer.current) return;
+
         const L = window.L;
-        markersLayer.current.clearLayers();
-        sheltersMock.forEach(shelter => {
-            const marker = L.marker([shelter.lat, shelter.lng]).addTo(markersLayer.current);
+        const layer = markersLayer.current;
+
+        layer.clearLayers();
+
+        sheltersMock.forEach((shelter) => {
+            const marker = L.marker([shelter.lat, shelter.lng]).addTo(layer);
+
             marker.bindPopup(`
         <div style="color: #333; font-family: sans-serif;">
           <h3 style="margin: 0 0 5px 0; font-weight: bold;">${shelter.name}</h3>
@@ -177,11 +94,7 @@ export default function App() {
     };
     const handleGetLocation = () => {
         if (!("geolocation" in navigator)) return;
-
-        if (!leafletMap.current || !window.L) {
-            console.log("Mapa não pronto");
-            return;
-        }
+        if (!leafletMap.current || !window.L) return;
 
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -189,15 +102,16 @@ export default function App() {
                 setLocation({ lat: latitude, lng: longitude });
 
                 const L = window.L;
+                const map: any = leafletMap.current;
 
-                leafletMap.current.flyTo([latitude, longitude], 16);
+                map.flyTo([latitude, longitude], 16);
 
                 if (userMarkerRef.current) {
-                    leafletMap.current.removeLayer(userMarkerRef.current);
+                    map.removeLayer(userMarkerRef.current);
                 }
 
                 userMarkerRef.current = L.marker([latitude, longitude])
-                    .addTo(leafletMap.current)
+                    .addTo(map)
                     .bindPopup("Você está aqui")
                     .openPopup();
             },
@@ -250,7 +164,7 @@ export default function App() {
                         Usar minha localização
                     </button>
                 </motion.div>
-                {user?.help_requests.length > 0 && <HelpRequests help_requests={user.help_requests} />}
+                {user?.help_requests && user?.help_requests?.length > 0 && <HelpRequests help_requests={user?.help_requests && user.help_requests} />}
             </section>
 
             <style dangerouslySetInnerHTML={{

@@ -6,10 +6,10 @@ import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { api } from "../../services/api/api"
 import { toast } from "react-toastify"
-import { useContext } from "react"
-import { AuthContext } from "../../context/AuthContext"
+import useAuth from "@/context/useAuth"
+
 export default function Auth() {
-    const { login } = useContext(AuthContext)
+    const { login } = useAuth()
     const { register, handleSubmit, formState: { errors, isValid } } = useForm<{ phone: number }>({ mode: "onChange" })
     const navigate = useNavigate()
     async function onSubmit(data: { phone: number }) {

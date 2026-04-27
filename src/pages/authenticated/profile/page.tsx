@@ -37,8 +37,8 @@ export default function Profile() {
                     email: response.data.user?.email || "",
                 });
             } catch (error: any) {
-                console.log(error);
-                console.log(error?.message);
+                (error);
+                (error?.message);
             } finally {
                 setLoading(false);
             }
@@ -64,7 +64,7 @@ export default function Profile() {
             toast.success('Usuário atualizado com sucesso')
             setIsEditing(false)
         } catch (error) {
-            console.log(error);
+            (error);
         }
     }
     function handleCancelEdit() {

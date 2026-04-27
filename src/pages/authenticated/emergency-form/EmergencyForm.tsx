@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { Urgency, type Help_Requests } from "../../../assets/types/user.types";
 import { api } from "../../../services/api/api";
 import { toast } from "react-toastify";
-import { useState } from "react";
 import { Button } from "../../../components/ui/button";
 import { motion } from 'framer-motion'
 import { TriangleAlert } from "lucide-react";
@@ -28,10 +27,10 @@ export default function EmergencyForm() {
         //                lat: position.coords.latitude,
         //              lng: position.coords.longitude
         //          })
-        //         console.log(position.coords.latitude, position.coords.longitude)
+        //         (position.coords.latitude, position.coords.longitude)
         //    }, (err) => {
         //  toast.error('Erro ao obter a localização')
-        //        console.log(err.message)
+        //        (err.message)
         //   }
         // )
         try {
@@ -45,7 +44,6 @@ export default function EmergencyForm() {
             navigate(`/help/${response.data.id}`)
         } catch (error) {
             toast.error('Erro na requisição')
-            console.log(error)
         }
     }
     return (

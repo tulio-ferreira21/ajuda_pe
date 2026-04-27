@@ -22,6 +22,6 @@ export async function handleDeleteHelp(id: string) {
             toast.error("Erro inesperado");
         }
 
-        console.log(error);
+        (error);
     }
 }
