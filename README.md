@@ -1,12 +1,12 @@
 # Ajuda PE
 
+---
 ## 1. Visão Geral
 
 Ajuda PE é uma plataforma desenvolvida para apoio em situações de enchentes no Brasil. O sistema tem como objetivo central fornecer acesso rápido, confiável e organizado a informações sobre abrigos e solicitações de socorro.
 
 A aplicação foi concebida para operar em cenários críticos, onde a disponibilidade de informação e a agilidade na comunicação impactam diretamente a segurança das pessoas afetadas.
 
----
 
 ## 2. Problema
 
@@ -19,7 +19,6 @@ Durante enchentes, é comum a ausência de uma fonte centralizada de informaçõ
 
 Essa falta de organização dificulta a tomada de decisão tanto por vítimas quanto por equipes de apoio.
 
----
 
 ## 3. Solução Proposta
 
@@ -30,7 +29,6 @@ O Ajuda PE centraliza essas informações em uma única plataforma, permitindo:
 * Registro de pedidos de socorro
 * Identificação de necessidades específicas de cada abrigo
 
----
 
 ## 4. Funcionalidades
 
@@ -50,27 +48,7 @@ O Ajuda PE centraliza essas informações em uma única plataforma, permitindo:
 * Registro de solicitações
 * Canal direto para comunicação emergencial
 
----
-
-## 5. Arquitetura
-
-A aplicação segue uma arquitetura cliente-servidor dividida em três camadas principais:
-
-### 5.1 Frontend
-
-Responsável pela interface com o usuário e consumo da API.
-
-### 5.2 Backend
-
-Responsável pelas regras de negócio, autenticação e processamento de dados.
-
-### 5.3 Banco de Dados
-
-Responsável pela persistência das informações de abrigos, usuários e solicitações.
-
----
-
-## 6. Tecnologias Utilizadas
+## 5. Tecnologias Utilizadas
 
 ### Frontend
 
@@ -95,15 +73,6 @@ Responsável pela persistência das informações de abrigos, usuários e solici
 ![Render](https://img.shields.io/badge/Render-430098?style=for-the-badge\&logo=render\&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge\&logo=vercel\&logoColor=white)
 
----
-
-## 7. Deploy
-
-* Backend hospedado na plataforma Render
-* Frontend hospedado na Vercel
-
----
-
-## 8. Considerações
+## 6. Considerações
 
 O Ajuda PE foi projetado com foco em simplicidade, desempenho e usabilidade em ambientes adversos. A escolha das tecnologias e da arquitetura visa garantir rapidez no acesso às informações e facilidade de manutenção do sistema.
