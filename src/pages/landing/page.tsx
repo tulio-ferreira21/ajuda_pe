@@ -77,7 +77,7 @@ export default function Main() {
                         transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                         className="flex gap-4 justify-center pt-4"
                     >
-                        <Link to="/auth" className="bg-white text-black px-4 py-2 rounded-lg text-sm font-medium hover:scale-105 active:scale-95 transition">
+                        <Link to="/auth">
                             <button className="bg-white text-black px-6 py-3 rounded-xl font-medium hover:scale-105 active:scale-95 transition">
                                 Encontrar abrigo
                             </button>
