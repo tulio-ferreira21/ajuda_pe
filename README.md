@@ -1,78 +1,85 @@
 # Ajuda PE
 
+## 1. Apresentação da Ideia
+
+Este projeto foi desenvolvido a partir do desafio proposto sobre enchentes no Brasil. Considerando o cenário apresentado, a ideia surgiu da necessidade de centralizar informações críticas em momentos de crise, onde a falta de organização e comunicação dificulta o acesso à ajuda.
+
+A proposta do Ajuda PE é oferecer uma plataforma capaz de conectar pessoas que precisam de ajuda com informações úteis sobre abrigos e suporte emergencial.
+
 ---
-## 1. Visão Geral
 
-Ajuda PE é uma plataforma desenvolvida para apoio em situações de enchentes no Brasil. O sistema tem como objetivo central fornecer acesso rápido, confiável e organizado a informações sobre abrigos e solicitações de socorro.
+## 2. Problema Escolhido
 
-A aplicação foi concebida para operar em cenários críticos, onde a disponibilidade de informação e a agilidade na comunicação impactam diretamente a segurança das pessoas afetadas.
+O problema escolhido foi a dificuldade de acesso a informações confiáveis durante enchentes.
 
+Em situações reais, informações importantes existem, porém estão dispersas em redes sociais e aplicativos de mensagem. Isso gera:
 
-## 2. Problema
+* Dificuldade para encontrar abrigos disponíveis
+* Falta de informação sobre capacidade e necessidades
+* Comunicação ineficiente entre vítimas e voluntários
 
-Durante enchentes, é comum a ausência de uma fonte centralizada de informações sobre:
-
-* Localização de abrigos
-* Capacidade disponível
-* Necessidades emergenciais
-* Comunicação de pedidos de ajuda
-
-Essa falta de organização dificulta a tomada de decisão tanto por vítimas quanto por equipes de apoio.
-
+---
 
 ## 3. Solução Proposta
 
-O Ajuda PE centraliza essas informações em uma única plataforma, permitindo:
+A solução proposta foi o desenvolvimento de uma plataforma que centraliza essas informações em um único sistema.
 
-* Consulta de abrigos próximos com base na localização do usuário
-* Visualização do status dos abrigos em tempo real
-* Registro de pedidos de socorro
-* Identificação de necessidades específicas de cada abrigo
+O Ajuda PE permite:
 
+* Visualizar abrigos próximos com base na localização
+* Verificar se o abrigo está cheio ou disponível
+* Identificar necessidades específicas de cada abrigo
+* Registrar pedidos de socorro
 
-## 4. Funcionalidades
+A plataforma busca organizar os dados de forma clara e acessível, facilitando a tomada de decisão em situações emergenciais.
 
-### 4.1 Consulta de Abrigos
+---
 
-* Listagem baseada em geolocalização
-* Informações detalhadas por abrigo
+## 4. Estrutura do Sistema
 
-### 4.2 Status dos Abrigos
+### Front-end
 
-* Lotação (cheio ou disponível)
-* Tipo de abrigo
-* Necessidades atuais
+Responsável pela interface com o usuário, exibindo os dados de forma clara e acessível.
 
-### 4.3 Pedido de Socorro
-
-* Registro de solicitações
-* Canal direto para comunicação emergencial
-
-## 5. Tecnologias Utilizadas
-
-### Frontend
-
+Tecnologias:
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge\&logo=react\&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge\&logo=typescript\&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge\&logo=tailwind-css\&logoColor=white)
 
-#### Bibliotecas
+Bibliotecas utilizadas:
 
 * shadcn/ui
 * react-hook-form
 * leaflet
 * lucide-icons
 
-### Backend
+---
 
+### Back-end
+
+Responsável pelas regras de negócio e comunicação com o banco de dados.
+
+Tecnologias:
 ![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge\&logo=express\&logoColor=white)
+
+---
+
+### Banco de Dados
+
+Responsável pela persistência das informações.
+
+Tecnologia:
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge\&logo=postgresql\&logoColor=white)
 
-### Infraestrutura
+---
 
-![Render](https://img.shields.io/badge/Render-430098?style=for-the-badge\&logo=render\&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge\&logo=vercel\&logoColor=white)
+## 5. Deploy
 
-## 6. Considerações
+* Backend hospedado na plataforma Render
+* Frontend hospedado na Vercel
 
-O Ajuda PE foi projetado com foco em simplicidade, desempenho e usabilidade em ambientes adversos. A escolha das tecnologias e da arquitetura visa garantir rapidez no acesso às informações e facilidade de manutenção do sistema.
+---
+
+## 6. Considerações Finais
+
+O projeto foi desenvolvido com foco em organização de informações, clareza e utilidade em cenários reais de emergência. A solução proposta busca demonstrar como a tecnologia pode ser utilizada para reduzir o impacto de desastres naturais e melhorar a comunicação entre as pessoas envolvidas.
