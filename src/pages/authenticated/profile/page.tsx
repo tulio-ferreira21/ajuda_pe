@@ -19,7 +19,7 @@ export default function Profile() {
     const [user, setUser] = useState<User>();
     const [loading, setLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
-
+    const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
     const [formData, setFormData] = useState<{ name: string, phone: string | number, email: string }>({
         name: "",
         phone: "",
@@ -58,13 +58,16 @@ export default function Profile() {
     }
     async function handleSaveProfile() {
         if (String(formData.phone).length != 11) return toast.error('O número deve ter 11 caracteres')
+        setIsSubmitting(true)
         try {
             const response = await api.patch('/users', { name: formData.name, email: formData.email, phone: formData.phone })
             setUser(response.data.user)
             toast.success('Usuário atualizado com sucesso')
             setIsEditing(false)
+            setIsSubmitting(false)
         } catch (error) {
             (error);
+            setIsSubmitting(false)
         }
     }
     function handleCancelEdit() {
@@ -174,7 +177,7 @@ export default function Profile() {
                                         className="w-full bg-transparent outline-none text-white placeholder:text-gray-500"
                                         placeholder="Digite seu nome"
                                     />
-                                </div>  
+                                </div>
                                 <div className="rounded-xl border border-white/10 bg-black/40 p-4">
                                     <p className="text-xs uppercase tracking-widest text-gray-500 mb-2">
                                         Telefone

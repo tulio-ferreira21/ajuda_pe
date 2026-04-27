@@ -77,10 +77,11 @@ export default function Main() {
                         transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                         className="flex gap-4 justify-center pt-4"
                     >
-                        <button className="bg-white text-black px-6 py-3 rounded-xl font-medium hover:scale-105 active:scale-95 transition">
-                            Encontrar abrigo
-                        </button>
-
+                        <Link to="/auth" className="bg-white text-black px-4 py-2 rounded-lg text-sm font-medium hover:scale-105 active:scale-95 transition">
+                            <button className="bg-white text-black px-6 py-3 rounded-xl font-medium hover:scale-105 active:scale-95 transition">
+                                Encontrar abrigo
+                            </button>
+                        </Link>
                         <a rel="noopener" target="_blank" href="https://www.defesacivil.pe.gov.br/manual-de-gestao-de-abrigos" className="border border-white/30 px-6 py-3 rounded-xl hover:bg-white/10 hover:scale-105 active:scale-95 transition">
                             Saber mais
                         </a>
@@ -89,7 +90,7 @@ export default function Main() {
                 </div>
             </section>
 
-         {/**
+            {/**
           *    <section className="min-h-dvh text-white px-6 py-20 bg-black backdrop-blur-2xl">
                 <div className="max-w-6xl mx-auto text-center space-y-12">
 
