@@ -14,8 +14,9 @@ export default function Auth() {
     const navigate = useNavigate()
     async function onSubmit(data: { phone: number }) {
         try {
-            const response: { message: string, phone: number } = await api.post('/auth/send-code', { phone: data.phone })
-            toast.success(response.message || "Código enviado", { toastId: "success-message" })
+            const response = await api.post('/auth/send-code', { phone: data.phone })
+            toast.success(response.data.message || "Código enviado", { toastId: "success-message" })
+            alert(`Seu código: ${response.data.code}`)
             login(data.phone)
             navigate('verify-code')
         } catch (error) {
