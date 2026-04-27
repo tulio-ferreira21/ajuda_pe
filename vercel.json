@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "https://back-ajuda-pe.onrender.com/$1"
+        }
+    ]
+}
